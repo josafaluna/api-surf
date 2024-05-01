@@ -5,18 +5,45 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "start": "pnpm run build && node dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node dist/src/index.js",
+    "start:local": "dotenv -e .env -- ts-node-dev --transpile-only src/index.ts | pino-pretty -c",
+    "test": "yarn lint && yarn style:check && yarn test:unit && yarn test:functional",
+    "lint": "eslint ./src ./test --ext .ts",
+    "lint:fix": "eslint ./src ./test --ext .ts --fix",
+    "test:functional": "dotenv -e .env -- jest --projects ./test --runInBand",
+    "test:unit": "dotenv -e .env -- jest",
+    "style:check": "prettier --check src/**/*.ts test/**/*.ts",
+    "style:fix": "prettier --write src/**/*.ts test/**/*.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "engines": {
+    "node": "16"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waldemarnt/node-typescript-api.git"
+  },
+  "keywords": [
+    "node",
+    "nodejs",
+    "typescript",
+    "api"
+  ],
+  "author": "Waldemar Neto",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/waldemarnt/node-typescript-api/issues"
+  },
+  "homepage": "https://github.com/waldemarnt/node-typescript-api#readme",
+  "dependencies": {    
+    "module-alias": "^2.2.2"
+  },
   "devDependencies": {
-    "@types/module-alias": "^2.0.4",
-    "@types/node": "^20.12.7",
-    "typescript": "^5.4.5"
-  },
-  "dependencies": {
-    "module-alias": "^2.2.3"
+    "@types/module-alias": "^2.0.1",
+    "@types/node": "16",
+    "@typescript-eslint/eslint-plugin": "^5.8.1",
+    "@typescript-eslint/parser": "^5.8.1",
+    "eslint": "^8.5.0",
+    "prettier": "^2.5.1",
+    "typescript": "^4.5.4"
   }
 }
