@@ -1,0 +1,24 @@
+{
+  "name": "api-surfs",
+  "version": "1.0.0",
+  "description": "API para calcular a melhor condição de surf entre varias praias",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "pnpm run build && node dist/index.js",
+    "start:dev": "ts-node-dev 'src/index.ts'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/module-alias": "^2.0.4",
+    "@types/node": "^20.12.8",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "module-alias": "^2.2.3"
+  }
+}
